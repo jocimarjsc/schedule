@@ -1,0 +1,29 @@
+  .content section .week-days .days .tasks .task p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 2px;
+    font-size: 14px;
+    color: var(--gray-dark);
+    padding: 2px;
+    width: 95%;
+  }
+
+  .content section .week-days .days .tasks .add-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    color: var(--gray-dark);
+    font-size: 12px;
+    cursor: pointer;
+    margin: 2px;
+    border-radius: 3px;
+    border: 1px solid var(--gray-dark);
+    transition: filter 0.2s;
+  }
+
+  .content section .week-days .days .tasks .add-modal:hover {
+    filter: brightness(90%);
+    background-color: var(--success-light);
+  }

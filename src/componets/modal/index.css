@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal-wrapper .modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-wrapper .modal-backdrop .modal-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  min-height: 30%;
+  overflow: auto;
+  background-color: var(--white);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  padding: 40px;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-header h3 {
+  color: var(--gray-dark);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-header span {
+  font-size: 20px;
+  color: var(--gray-dark);
+  font-weight: 700;
+  transition: filter 0.2s;
+  cursor: pointer;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-header span:hover {
+  filter: brightness(70%)
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-line {
+  border-bottom: 1px solid var(--gray-dark);
+  margin-top: 10px;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form {
+  width: 100%;
+  display: flex;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-left {
+  width: 100%;
+  display: flex;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right {
+  width: 100%;
+  display: flex;
+}

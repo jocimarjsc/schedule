@@ -1,0 +1,5 @@
+.content section .week-days .days {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
