@@ -77,12 +77,78 @@
   display: flex;
 }
 
+.modal-label-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-left .modal-label-input+.modal-label-input {
+  margin-top: 10px;
+}
+
 .modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-left {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  margin-right: 7px;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-left .modal-label-input label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--gray-dark);
 }
 
 .modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right {
   width: 100%;
   display: flex;
+  margin-left: 7px;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .modal-label-input label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--gray-dark);
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .modal-label-input textarea {
+  font-size: 14px;
+  color: var(--gray-dark);
+  padding: 10px;
+  resize: none;
+  outline: none;
+  background-color: var(--gray-light);
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 200px;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .modal-label-input .modal-check {
+  display: flex;
+  width: 100%;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .modal-label-input .modal-check .modal-check-radio {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .modal-label-input .modal-check-radio+.modal-check-radio {
+  margin-left: 20px;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .modal-label-input .modal-check .modal-check-radio label {
+  font-size: 14px !important;
+  color: var(--gray-dark);
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .modal-label-input .modal-check .modal-check-radio input {
+  width: 15px;
+  margin-left: 10px;
 }
