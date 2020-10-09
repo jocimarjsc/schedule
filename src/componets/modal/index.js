@@ -17,9 +17,6 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                 <div className="modal-box">
                     <div className="modal-header">
                         <h3>Pedido arranjos de balões</h3>
-                        <div className="date">
-                            <input type="text" value={`${day}/${monthActual}/${getYear()}`} />
-                        </div>
                         <span onClick={close}>&times;</span>
                     </div>
                     <div className="modal-line"></div>
@@ -49,20 +46,20 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                                         <label htmlFor="model">Modelo</label>
                                         <div className="modal-check">
                                             <div className="modal-check-radio">
-                                                <label htmlFor="balao-cake">Balão cake</label>
-                                                <input type='radio' id="balao-cake" value="balao-cake" name="balao" />
+                                                <label htmlFor="table">Mesa</label>
+                                                <input type='radio' id="table" value="table" name="model" />
                                             </div>
 
                                             <div className="modal-check-radio">
-                                                <label htmlFor="balao-arranjo">Balão arranjo</label>
-                                                <input type='radio' id="balao-arranjo" value="balao-arranjo" name="balao" />
-                                            </div>
-
-                                            <div className="modal-check-radio">
-                                                <label htmlFor="somente-balao">Somente balão</label>
-                                                <input type='radio' id="somente-balao" value="somente-balao" name="balao" />
+                                                <label htmlFor="floor">Chão</label>
+                                                <input type='radio' id="floor" value="floor" name="model" />
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div className="modal-label-input">
+                                        <label htmlFor="observation">Observação</label>
+                                        <textarea name="observation" id="observation" placeholder='Observação' />
                                     </div>
 
                                     <div className="modal-label-input">
@@ -76,8 +73,20 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                                     </div>
 
                                     <div className="modal-label-input">
-                                        <label htmlFor="description">Descrição</label>
-                                        <textarea name="description" id="description" placeholder='descrição' />
+                                        <label htmlFor="symbol-photo">Algum símbolo ou foto</label>
+                                        <input type="text" placeholder='Algum símbolo ou foto' />
+                                    </div>
+
+                                    <div className="modal-line-item">
+                                        <div className="modal-label-input">
+                                            <label htmlFor="delivery-date">Data entrega</label>
+                                            <input type="text" value={`${day}/${monthActual}/${getYear()}`} />
+                                        </div>
+
+                                        <div className="modal-label-input">
+                                            <label htmlFor="delivery-time">Hora para entrega</label>
+                                            <input type="text" placeholder='00:00' />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

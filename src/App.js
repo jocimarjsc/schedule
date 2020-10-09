@@ -83,7 +83,7 @@ function App() {
 
   async function getService() {
     const service = [
-      { id: 1, name: 'Aparecida de Almeida', status: 'Espera', date: '01/10/2020', days: '01', month: '10' },
+      { id: 1, name: 'Aparecida de Almeida', status: 'Espera', date: '01/10/2020', days: '02', month: '10' },
       { id: 2, name: 'João Alberto da Silva', status: 'Aguardando', date: '01/10/2020', days: '01', month: '10' },
       { id: 3, name: 'Carlos Henrique', status: 'Entregue', date: '29/10/2020', days: '29', month: '10' },
       { id: 4, name: 'Carlos Henrique', status: 'Entregue', date: '31/10/2020', days: '31', month: '10' },
