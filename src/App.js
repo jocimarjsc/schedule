@@ -3,7 +3,9 @@ import './App.css';
 
 import { BiChevronsLeft, BiChevronsRight } from "react-icons/bi";
 
-import VerifyWeek from './componets/verifyWeek'
+import VerifyWeek from './componets/verifyWeek';
+
+import api from './services/api';
 
 function App() {
   const [date, setDate] = useState([])
@@ -17,13 +19,14 @@ function App() {
     getMonth()
     getWeeks()
     getService()
-  }, [])
+  },[])
   
   function generatedays(year, month) {
     const day = new Date(year, month + 1, 0).getDate()
     let days = []
     for (let i = 0; i < day; i++) {
-      days.push(i + 1)
+      const d = 
+      days.push(i < 9 ? `0${i+1}`: i+1)
     }
     setDate(days)
   }
@@ -35,8 +38,9 @@ function App() {
     const firstDay = new Date(year || years, month || months, 1).getDay()
     setWeekPosition(firstDay)
   }
+  
   async function getMonth() {
-    const months = new Array('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro')
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     const d = new Date()
     const month = d.getMonth()
     const year = d.getFullYear()
@@ -47,7 +51,7 @@ function App() {
   }
 
   function handleNextMonth() {
-    const months = new Array('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro')
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     const d = new Date()
     const year = d.getFullYear()
     const newMonth = monthPosition + 1
@@ -65,7 +69,7 @@ function App() {
   }
 
   function handlePreviousMonth() {
-    const months = new Array('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro')
+    const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     const d = new Date()
     const newMonth = monthPosition - 1
     const year = d.getFullYear()
@@ -92,7 +96,7 @@ function App() {
       { id: 7, name: 'Aparecida de Almeida', status: 'Entregue', date: '01/10/2020', days: '05', month: '10' },
       { id: 8, name: 'Alison Felipe', status: 'Aguardando', date: '19/10/2020', days: '19', month: '10' }
     ]
-    setService(service)
+    await api.get('/services').then(response => setService(response.data));
   }
 
   return (

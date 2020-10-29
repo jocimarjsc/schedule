@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import './style.css'
-import Task from '../task'
-import Modal from '../modal'
+import './style.css';
+import Task from '../task';
+import Modal from '../modal';
 
 function Days({ week, date, service, monthActual }) {
     const [isModalVisible, setIsModalVisible] = useState(false)
@@ -17,14 +17,18 @@ function Days({ week, date, service, monthActual }) {
             return 'success'
         }
     }
-    
+
     function openModal(day) {
         setIsModalVisible(true)
         setOneDay(day)
     }
+
     return week === 4 ?
         <>
-        {isModalVisible ? <Modal day={oneDay} monthActual={monthActual} close={() => setIsModalVisible(false)}/> : null}
+            {isModalVisible ?
+                <Modal day={oneDay} monthActual={monthActual} close={() => setIsModalVisible(false)} />
+                : null
+            }
             <div className="tasks"></div>
             <div className="tasks"></div>
             <div className="tasks"></div>
@@ -33,16 +37,19 @@ function Days({ week, date, service, monthActual }) {
                 <div key={day} className="tasks">
                     <span>{day}</span>
                     <div className="task">
-                    {service.map(serv => (
-                        serv.days == day ? <Task key={serv.id}
-                            service={serv}
-                            status={verifyStatus(serv.status)}
-                        /> : null
-                    ))}
-                    <div className='add-modal' onClick={() => openModal(day)}>Adicionar</div>
+                        {service.map(serv => (
+                            serv.delivery_date.substr(0,2) == day ?
+                                <Task
+                                    key={serv.id}
+                                    service={serv}
+                                    status={verifyStatus(serv.status)}
+                                />
+                                : null
+                        ))}
+                        <div className='add-modal' onClick={() => openModal(day)}>Adicionar</div>
                     </div>
                 </div>
-                ))}
+            ))}
         </> : null
 }
 

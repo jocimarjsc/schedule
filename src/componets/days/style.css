@@ -2,7 +2,7 @@
     background-color: var(--gray-more-light);
     width: 14.28%;
     height: auto;
-    min-height: 70px;
+    min-height: 80px;
     border: 1px solid var(--white);
     display: flex;
     flex-direction: column;
