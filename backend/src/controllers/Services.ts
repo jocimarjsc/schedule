@@ -8,7 +8,7 @@ export default {
         const servicesRepository = getRepository(Services);
         const services = await servicesRepository.find({
             order: {
-                id: 'DESC'
+                id: 'ASC'
             }
         });
 
@@ -27,13 +27,13 @@ export default {
     async update(request: Request, response: Response) {
         const { id } = request.params;
         const {
-            name, telephone, address, observations, colors, written_balloon,
-            balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value, lack_value
+            name, telephone, address, model_checked, status, observations, colors, written_balloon,
+            balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value
         } = request.body;
 
         const data = {
-            name, telephone, address, observations, colors, written_balloon,
-            balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value, lack_value
+            name, telephone, address, model_checked, status, observations, colors, written_balloon,
+            balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value
         };
 
         const servicesRepository = getRepository(Services);
@@ -50,12 +50,12 @@ export default {
     async create(request: Request, response: Response) {
         const servicesRepository = getRepository(Services);
         const {
-            name, telephone, address, model_checked, observations, colors, written_balloon,
+            name, telephone, address, model_checked, status, observations, colors, written_balloon,
             balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value, lack_value
         } = request.body;
 
         const data = {
-            name, telephone, address, model_checked, observations, colors, written_balloon,
+            name, telephone, address, model_checked, status, observations, colors, written_balloon,
             balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value, lack_value
         };
 

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './index.css'
 import api from '../../services/api';
-import { useEffect } from 'react';
 
 const Modal = ({ close, id = 'modal', monthActual, day }) => {
     const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
     const [address, setAddress] = useState('');
     const [model_checked, setModel_checked] = useState('');
+    const [status, setStatus] = useState('');
     const [observations, setObservations] = useState('');
     const [written_balloon, setWritten_balloon] = useState('');
     const [balloon_symbol, setBalloon_symbol] = useState('');
@@ -17,11 +18,13 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
     const [delivery_hours, setDelivery_hours] = useState('');
     const [value, setValue] = useState();
     const [entry_value, setEntry_value] = useState();
-    const [falta, setFalta] = useState();
+    const [lack, setLack] = useState();
+
+    const history = useHistory();
 
     useEffect(() => {
         setDelivery_date(`${day}/${monthActual}/${getYear()}`)
-    },[delivery_date])
+    },[])
 
     function getYear() {
         const d = new Date()
@@ -34,22 +37,32 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
     }
 
 
-    const handleRadioClicked = e => {
+    const handleRadioClickedModel = e => {
         setModel_checked(e.target.value);
+        console.log(e.target.value)
+    }
+
+    const handleRadioClickedStatus = e => {
+        setStatus(e.target.value);
+        console.log(e.target.value)
     }
 
     const calcvalue = (value, entryValue) => {
-        return setFalta(value - entryValue)
+        return setLack(parseFloat((value - entryValue).toFixed(2)))
     }
 
     const handleSubmit = async e => {
         e.preventDefault()
         const data = {
-            name, telephone, address, model_checked, written_balloon,
+            name, telephone, address, model_checked, status, written_balloon,
             balloon_symbol, delivery_date, delivery_hours, observations,
             amount, value, entry_value
         }
-        await api.post('/services', data)
+        await api.post('/services', data);
+
+        close();
+        history.push('/');
+
     }
 
     return (
@@ -63,7 +76,7 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                     <div className="modal-line"></div>
 
                     <div className="modal-content">
-                        <form action="" method="post">
+                        <form>
                             <div className="modal-left">
                                 <div className="modal-label-input">
                                     <label htmlFor="name">Nome</label>
@@ -99,7 +112,7 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                                     <label htmlFor="model">Modelo</label>
                                     <div
                                         className="modal-check"
-                                        onChange={handleRadioClicked}
+                                        onChange={handleRadioClickedModel}
                                     >
                                         <div className="modal-check-radio">
                                             <label htmlFor="floor">Mesa</label>
@@ -114,6 +127,29 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                                         <div className="modal-check-radio">
                                             <label htmlFor="floor">Base fixa</label>
                                             <input type='radio' id="floor" value="Base fixa" name="model" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="modal-label-input">
+                                    <label htmlFor="model">Estatus</label>
+                                    <div
+                                        className="modal-check"
+                                        onChange={handleRadioClickedStatus}
+                                    >
+                                        <div className="modal-check-radio">
+                                            <label htmlFor="floor">Espera</label>
+                                            <input type='radio' id="status" value="Espera" name="status" />
+                                        </div>
+
+                                        <div className="modal-check-radio">
+                                            <label htmlFor="status">Aguardando</label>
+                                            <input type='radio' id="status" value="Aguardando" name="status" />
+                                        </div>
+
+                                        <div className="modal-check-radio">
+                                            <label htmlFor="status">Entregue</label>
+                                            <input type='radio' id="status" value="Entregue" name="status" />
                                         </div>
                                     </div>
                                 </div>
@@ -146,6 +182,8 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                                         <input 
                                             type="text"
                                             value={delivery_date}
+                                            onChange={event => setDelivery_date(event.target.value)}
+                                            disabled
                                         />
                                     </div>
 
@@ -209,7 +247,7 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
                                         <input 
                                             type="text" 
                                             placeholder="R$ 0,00"  
-                                            value={falta}
+                                            value={lack}
                                             onClick={() => calcvalue(value, entry_value)}
                                         />
                                     </div>

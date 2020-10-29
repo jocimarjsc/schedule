@@ -31,12 +31,12 @@ export class createServices1603810470391 implements MigrationInterface {
           type: 'varchar'
         },
         {
-          name: 'observations',
-          type: 'text'
+          name: 'status',
+          type: 'varchar'
         },
         {
-          name: 'colors',
-          type: 'varchar',
+          name: 'observations',
+          type: 'text'
         },
         {
           name: 'written_balloon',

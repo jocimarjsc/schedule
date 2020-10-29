@@ -16,12 +16,12 @@ export default class Service {
 
     @Column()
     model_checked: string;
+
+    @Column()
+    status: string;
     
     @Column()
     observations: string;
-
-    @Column()
-    colors: string;
 
     @Column()
     written_balloon: string;
