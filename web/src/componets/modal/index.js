@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './index.css'
 import api from '../../services/api';
 
-const Modal = ({ close, id = 'modal', monthActual, day }) => {
+const Modal = ({ close, id = 'modal', day }) => {
     const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
     const [address, setAddress] = useState('');
@@ -23,8 +23,8 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
     const history = useHistory();
 
     useEffect(() => {
-        setDelivery_date(`${day}/${monthActual}/${getYear()}`)
-    },[])
+        setDelivery_date(`${day[0]< 10 ? '0'+day[0] : day[0]}/${day[1] < 10 ? '0'+day[1] : day[1]}/${getYear()}`)
+    },[day])
 
     function getYear() {
         const d = new Date()
@@ -39,12 +39,10 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
 
     const handleRadioClickedModel = e => {
         setModel_checked(e.target.value);
-        console.log(e.target.value)
     }
 
     const handleRadioClickedStatus = e => {
         setStatus(e.target.value);
-        console.log(e.target.value)
     }
 
     const calcvalue = (value, entryValue) => {
@@ -53,9 +51,13 @@ const Modal = ({ close, id = 'modal', monthActual, day }) => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        
+        const day = parseInt(delivery_date.substr(0,2));
+        const month = parseInt(delivery_date.substr(3,2));
+        const year = parseInt(delivery_date.substr(6,4));
         const data = {
             name, telephone, address, model_checked, status, written_balloon,
-            balloon_symbol, delivery_date, delivery_hours, observations,
+            balloon_symbol, day, month, year, delivery_date, delivery_hours, observations,
             amount, value, entry_value
         }
         await api.post('/services', data);

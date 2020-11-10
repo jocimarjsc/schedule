@@ -1,4 +1,4 @@
-  .content section .week-days .days .tasks .task p {
+  /*.content section .week-days .days .tasks .task p {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -26,4 +26,4 @@
   .content section .week-days .days .tasks .add-modal:hover {
     filter: brightness(90%);
     background-color: var(--success-light);
-  }
+  }*/

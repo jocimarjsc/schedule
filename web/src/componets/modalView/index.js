@@ -6,14 +6,14 @@ import api from '../../services/api';
 const Modal = ({ close, id = 'modal', idService }) => {
     const [service, setService] = useState([]);
 
-    useEffect( () => {
-        async function data(){
+    useEffect(() => {
+        async function data() {
             await api.get(`/services/${idService}`).then(response => {
                 setService(response.data)
             });
         }
         data()
-    },[idService])
+    }, [idService])
 
 
     const handleOutsideClick = e => {
@@ -28,6 +28,7 @@ const Modal = ({ close, id = 'modal', idService }) => {
     const handleSubmit = e => {
         e.preventDefault()
     }
+
 
     return (
         <div className="modal-wrapper">
@@ -90,6 +91,44 @@ const Modal = ({ close, id = 'modal', idService }) => {
                                                 value="Base fixa"
                                                 name="model"
                                                 checked={service.model_checked === 'Base fixa' ? true : false}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="modal-label-input">
+                                    <label htmlFor="model">Estatus</label>
+                                    <div className="modal-check">
+                                        <div className="modal-check-radio">
+                                            <label htmlFor="floor">Espera</label>
+                                            <input
+                                                type='radio' 
+                                                id="status" 
+                                                value="Espera" 
+                                                name="status"
+                                                checked={service.status === 'Espera' ? true : false}
+                                            />
+                                        </div>
+
+                                        <div className="modal-check-radio">
+                                            <label htmlFor="status">Aguardando</label>
+                                            <input 
+                                                type='radio' 
+                                                id="status" 
+                                                value="Aguardando" 
+                                                name="status" 
+                                                checked={service.status === 'Aguardando' ? true : false}
+                                            />
+                                        </div>
+
+                                        <div className="modal-check-radio">
+                                            <label htmlFor="status">Entregue</label>
+                                            <input 
+                                                type='radio'
+                                                id="status" 
+                                                value="Entregue" 
+                                                name="status" 
+                                                checked={service.status === 'Entregue' ? true : false}
                                             />
                                         </div>
                                     </div>

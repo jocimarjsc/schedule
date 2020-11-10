@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 
 import './style.css';
 import ModalView from '../modalView';
@@ -21,7 +21,7 @@ function Task({ service, status }) {
                 className={status}
                 onClick={() => openModalView()}
             >
-                {service.name}
+                {service.id} - {service.name}
             </p>
         </>
     )
