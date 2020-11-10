@@ -51,6 +51,18 @@ export class createServices1603810470391 implements MigrationInterface {
           type: 'integer'
         },
         {
+          name: 'day',
+          type: 'integer'
+        },
+        {
+          name: 'month',
+          type: 'integer'
+        },
+        {
+          name: 'year',
+          type: 'integer'
+        },
+        {
           name: 'delivery_date',
           type: 'varchar',
         },

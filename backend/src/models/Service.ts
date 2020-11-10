@@ -33,6 +33,15 @@ export default class Service {
     amount: number;
 
     @Column()
+    day: string;
+
+    @Column()
+    month: string;
+
+    @Column()
+    year: string;
+
+    @Column()
     delivery_date: string;
 
     @Column()
