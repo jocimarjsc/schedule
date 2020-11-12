@@ -22,9 +22,6 @@ const Modal = ({ close, id = 'modal', day }) => {
 
     const history = useHistory();
 
-    useEffect(() => {
-        setDelivery_date(`${day[0]< 10 ? '0'+day[0] : day[0]}/${day[1] < 10 ? '0'+day[1] : day[1]}/${getYear()}`)
-    },[day])
 
     function getYear() {
         const d = new Date()
@@ -129,11 +126,6 @@ const Modal = ({ close, id = 'modal', day }) => {
                                         <div className="modal-check-radio">
                                             <label htmlFor="floor">Base fixa</label>
                                             <input type='radio' id="floor" value="Base fixa" name="model" />
-                                        </div>
-
-                                        <div className="modal-check-radio">
-                                            <label htmlFor="floor">Balão Cake</label>
-                                            <input type='radio' id="floor" value="Balão Cake" name="model" />
                                         </div>
                                     </div>
                                 </div>

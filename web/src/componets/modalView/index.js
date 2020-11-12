@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import './index.css';
 import api from '../../services/api';
+import ModalEdit from '../modalEdit';
 
 const Modal = ({ close, id = 'modal', idService }) => {
     const [service, setService] = useState([]);
+    const [isModalVisible, setIsModalVisible] = useState(false)
 
     useEffect(() => {
         async function data() {
@@ -27,10 +29,16 @@ const Modal = ({ close, id = 'modal', idService }) => {
 
     const handleSubmit = e => {
         e.preventDefault()
+        setIsModalVisible(true)        
     }
 
 
     return (
+        <>
+        {isModalVisible ?
+        <ModalEdit id={idService} close={() => setIsModalVisible(false)} />
+        : null
+      }
         <div className="modal-wrapper">
             <div id={id} onClick={handleOutsideClick} className="modal-backdrop">
                 <div className="modal-box">
@@ -45,103 +53,41 @@ const Modal = ({ close, id = 'modal', idService }) => {
                             <div className="modal-left">
                                 <div className="modal-label-input">
                                     <label htmlFor="name">Nome</label>
-                                    <input type="text" value={service.name} />
+                                    <div className="input">{service.name}</div>
                                 </div>
 
                                 <div className="modal-label-input">
                                     <label htmlFor="phone">Telefone</label>
-                                    <input type="text" value={service.telephone} />
+                                    <div className="input">{service.telephone}</div>
                                 </div>
 
                                 <div className="modal-label-input">
                                     <label htmlFor="address">Endereço</label>
-                                    <input type="text" value={service.address} />
+                                    <div className="input">{service.address}</div>
                                 </div>
 
                                 <div className="modal-label-input">
                                     <label htmlFor="model">Modelo</label>
                                     <div className="modal-check" >
-                                        <div className="modal-check-radio">
-                                            <label htmlFor="floor">Mesa</label>
-                                            <input
-                                                type='radio'
-                                                id="floor"
-                                                value="Mesa"
-                                                name="model"
-                                                checked={service.model_checked === 'Mesa' ? true : false}
-                                            />
-                                        </div>
-
-                                        <div className="modal-check-radio">
-                                            <label htmlFor="floor">Chão</label>
-                                            <input
-                                                type='radio'
-                                                id="floor"
-                                                value="Chão"
-                                                name="model"
-                                                checked={service.model_checked === 'Chão' ? true : false}
-                                            />
-                                        </div>
-
-                                        <div className="modal-check-radio">
-                                            <label htmlFor="floor">Base fixa</label>
-                                            <input
-                                                type='radio'
-                                                id="floor"
-                                                value="Base fixa"
-                                                name="model"
-                                                checked={service.model_checked === 'Base fixa' ? true : false}
-                                            />
-                                        </div>
+                                        <div className="input">{service.model_checked}</div>
                                     </div>
                                 </div>
 
                                 <div className="modal-label-input">
                                     <label htmlFor="model">Estatus</label>
                                     <div className="modal-check">
-                                        <div className="modal-check-radio">
-                                            <label htmlFor="floor">Espera</label>
-                                            <input
-                                                type='radio' 
-                                                id="status" 
-                                                value="Espera" 
-                                                name="status"
-                                                checked={service.status === 'Espera' ? true : false}
-                                            />
-                                        </div>
-
-                                        <div className="modal-check-radio">
-                                            <label htmlFor="status">Aguardando</label>
-                                            <input 
-                                                type='radio' 
-                                                id="status" 
-                                                value="Aguardando" 
-                                                name="status" 
-                                                checked={service.status === 'Aguardando' ? true : false}
-                                            />
-                                        </div>
-
-                                        <div className="modal-check-radio">
-                                            <label htmlFor="status">Entregue</label>
-                                            <input 
-                                                type='radio'
-                                                id="status" 
-                                                value="Entregue" 
-                                                name="status" 
-                                                checked={service.status === 'Entregue' ? true : false}
-                                            />
-                                        </div>
+                                        <div className="input">{service.status}</div>
                                     </div>
                                 </div>
 
                                 <div className="modal-label-input">
                                     <label htmlFor="written">Escrito no balão</label>
-                                    <input type="text" value={service.written_balloon} />
+                                    <div className="input">{service.written_balloon}</div>
                                 </div>
 
                                 <div className="modal-label-input">
                                     <label htmlFor="symbol-photo">Algum símbolo ou foto</label>
-                                    <input type="text" value={service.balloon_symbol} />
+                                    <div className="input">{service.balloon_symbol}</div>
                                 </div>
                             </div>
 
@@ -149,12 +95,12 @@ const Modal = ({ close, id = 'modal', idService }) => {
                                 <div className="modal-line-item">
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-date">Data entrega</label>
-                                        <input type="text" value={service.delivery_date} />
+                                        <div className="input">{service.delivery_date}</div>
                                     </div>
 
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-time">Hora para entrega</label>
-                                        <input type="text" value={service.delivery_hours} />
+                                        <div className="input">{service.delivery_hours}</div>
                                     </div>
                                 </div>
 
@@ -165,23 +111,23 @@ const Modal = ({ close, id = 'modal', idService }) => {
 
                                 <div className="modal-label-input">
                                     <label htmlFor="amount">Quantidade</label>
-                                    <input type='number' id="amount" name="amount" value={service.amount} />
+                                    <div className="input">{service.amount}</div>
                                 </div>
 
                                 <div className="modal-line-item">
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-date">Valor</label>
-                                        <input type="text" value={service.value} />
+                                        <div className="input">R$ {service.value}</div>
                                     </div>
 
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-time">Entrada</label>
-                                        <input type="text" value={service.entry_value} />
+                                        <div className="input">R$ {service.entry_value}</div>
                                     </div>
 
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-time">Falta pagar</label>
-                                        <input type="text" placeholder="R$ 0,00" value={calcvalue(service.value, service.entry_value)} />
+                                        <div className="input">R$ {calcvalue(service.value, service.entry_value)}</div>
                                     </div>
                                 </div>
 
@@ -195,6 +141,7 @@ const Modal = ({ close, id = 'modal', idService }) => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
