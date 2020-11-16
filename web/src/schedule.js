@@ -29,7 +29,7 @@ function App() {
   }, [date]);
 
   useEffect(() => {
-    getService(month + 1)
+    getService(month + 1, year)
   },[isModalVisible])
 
   function getStartDayOfMonth(date) {
@@ -40,20 +40,9 @@ function App() {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   }
 
-  async function getService(month) {
-    await api.get(`/services/list/${month}`).then(response => setService(response.data));
+  async function getService(month, year) {
+    await api.get(`/services/${month}/${year}`).then(response => setService(response.data));
   }
-
-  function verifyStatus(serv) {
-    if (serv === 'Espera') {
-      return 'danger'
-    } else if (serv === 'Aguardando') {
-      return 'warning'
-    } else {
-      return 'success'
-    }
-  }
-
   function openModal(day, month) {
     setIsModalVisible(true)
     setDayMonth([day, month])
@@ -62,19 +51,27 @@ function App() {
   const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
 
   function getNextMonth() {
-    setDate(new Date(year, month + 1, day));
-    getService(month + 2);
+    setDate(new Date(year, month+1, day));
+    if(month === 11) {
+      return getService(month - 10, year+1)
+    }
+    getService(month + 2, year )
   }
 
   function getBeforeMonth() {
     setDate(new Date(year, month - 1, day));
-    getService(month);
+    if(month === 0){
+      return getService(month + 12, year -1)
+    }
+    if(year === year){
+      getService(month, year)
+    }
   }
 
   return (
     <>
       {isModalVisible ?
-        <Modal day={DayMonth} close={() => setIsModalVisible(false)} />
+        <Modal day={DayMonth} close={() => setIsModalVisible(false)} year={year} />
         : null
       }
       <div className="container">
@@ -112,8 +109,7 @@ function App() {
                             service.day === d && service.month === month + 1 && service.year === year ?
                               <Task
                                 key={service.id}
-                                service={service}
-                                status={verifyStatus(service.status)}
+                                idService={service.id}
                               />
                               : null
                           ))}

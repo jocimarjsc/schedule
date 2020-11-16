@@ -45,13 +45,12 @@
 }
 
 .content section .month .arrow {
-  font-size: 24px;
   color: var(--gray-dark);
-  margin-left: 50px;
-  margin-right: 50px;
   cursor: pointer;
   border: 1px solid var(--gray-dark);
   border-radius: 5px;
+  min-width: 30px;
+  min-height: 30px;
 }
 
 .content section .month .arrow:hover {

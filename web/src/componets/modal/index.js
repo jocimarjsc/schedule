@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './index.css'
 import api from '../../services/api';
 
-const Modal = ({ close, id = 'modal', day }) => {
+const Modal = ({ close, id = 'modal', day, year }) => {
     const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
     const [address, setAddress] = useState('');
@@ -23,14 +23,9 @@ const Modal = ({ close, id = 'modal', day }) => {
     const history = useHistory();
 
     useEffect(() => {
-        setDelivery_date(`${day[0]< 10 ? '0'+day[0] : day[0]}/${day[1] < 10 ? '0'+day[1] : day[1]}/${getYear()}`)
+        setDelivery_date(`${day[0]< 10 ? '0'+day[0] : day[0]}/${day[1] < 10 ? '0'+day[1] : day[1]}/${year}`)
+        console.log(year)
     },[day])
-
-    function getYear() {
-        const d = new Date()
-        const year = d.getFullYear()
-        return year
-    }
 
     const handleOutsideClick = e => {
         if (e.target.id === id) close()

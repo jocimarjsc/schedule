@@ -92,20 +92,6 @@
   margin-right: 7px;
 }
 
-.input {
-  font-size: 14px;
-  color: var(--gray-dark);
-  padding: 10px;
-  outline: none;
-  background-color: var(--gray-light);
-  border: none;
-  border-radius: 8px;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-
 .modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right {
   width: 100%;
   display: flex;

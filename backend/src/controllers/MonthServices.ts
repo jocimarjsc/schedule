@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, Like } from 'typeorm';
 
 import Services from '../models/Service';
 
 export default {
     async index(request: Request, response: Response) {
-        const { month } = request.params;
+        const { month, year } = request.params;
+        console.log(month, year)
         const servicesRepository = getRepository(Services);
         const services = await servicesRepository.find( {
-            where: {month: month},
+            where: {month: month, year: year},
             order: {
                 id: 'ASC'
             }
