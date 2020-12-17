@@ -170,3 +170,7 @@
 .modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-right .footer button+button {
   margin-left: 10px;
 }
+
+.text-gray {
+  color: var(--gray-dark)!important;
+}

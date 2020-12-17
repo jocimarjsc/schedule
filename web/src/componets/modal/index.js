@@ -5,6 +5,7 @@ import './index.css'
 import api from '../../services/api';
 
 const Modal = ({ close, id = 'modal', day, year }) => {
+    const [create, setCreate] = useState('');
     const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
     const [address, setAddress] = useState('');
@@ -23,9 +24,8 @@ const Modal = ({ close, id = 'modal', day, year }) => {
     const history = useHistory();
 
     useEffect(() => {
-        setDelivery_date(`${day[0]< 10 ? '0'+day[0] : day[0]}/${day[1] < 10 ? '0'+day[1] : day[1]}/${year}`)
-        console.log(year)
-    },[day])
+        setDelivery_date(`${day[0] < 10 ? '0' + day[0] : day[0]}/${day[1] < 10 ? '0' + day[1] : day[1]}/${year}`)
+    }, [day])
 
     const handleOutsideClick = e => {
         if (e.target.id === id) close()
@@ -34,6 +34,11 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
     const handleRadioClickedModel = e => {
         setModel_checked(e.target.value);
+    }
+
+    const handleRadioClickedCreated = e => {
+        console.log(e.target.value)
+        setCreate(e.target.value);
     }
 
     const handleRadioClickedStatus = e => {
@@ -46,12 +51,12 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        
-        const day = parseInt(delivery_date.substr(0,2));
-        const month = parseInt(delivery_date.substr(3,2));
-        const year = parseInt(delivery_date.substr(6,4));
+
+        const day = parseInt(delivery_date.substr(0, 2));
+        const month = parseInt(delivery_date.substr(3, 2));
+        const year = parseInt(delivery_date.substr(6, 4));
         const data = {
-            name, telephone, address, model_checked, status, written_balloon,
+            create, name, telephone, address, model_checked, status, written_balloon,
             balloon_symbol, day, month, year, delivery_date, delivery_hours, observations,
             amount, value, entry_value
         }
@@ -75,11 +80,35 @@ const Modal = ({ close, id = 'modal', day, year }) => {
                     <div className="modal-content">
                         <form>
                             <div className="modal-left">
+                                <div 
+                                    className="created"
+                                    onChange={handleRadioClickedCreated}    
+                                >
+                                    <label htmlFor="created-label">Criado por: </label>
+                                    <div className="created-check-radio">
+                                        <label htmlFor="floor">Edineia</label>
+                                        <input type='radio' id="floor" value="Edineia" name="create" />
+                                    </div>
+
+                                    <div className="created-check-radio">
+                                        <label htmlFor="floor">Eldirene</label>
+                                        <input type='radio' id="floor" value="Eldirene" name="create" />
+                                    </div>
+
+                                    <div className="created-check-radio">
+                                        <label htmlFor="floor">Luana</label>
+                                        <input type='radio' id="floor" value="Luana" name="create" />
+                                    </div>
+                                    <div className="created-check-radio">
+                                        <label htmlFor="floor">Tamires</label>
+                                        <input type='radio' id="floor" value="Tamires" name="create" />
+                                    </div>
+                                </div>
                                 <div className="modal-label-input">
                                     <label htmlFor="name">Nome</label>
-                                    <input 
-                                        type="text" 
-                                        placeholder='Nome' 
+                                    <input
+                                        type="text"
+                                        placeholder='Nome'
                                         value={name}
                                         onChange={event => setName(event.target.value)}
                                     />
@@ -87,19 +116,19 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                 <div className="modal-label-input">
                                     <label htmlFor="phone">Telefone</label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         placeholder='Telefone'
                                         value={telephone}
-                                        onChange={event => setTelephone(event.target.value)} 
+                                        onChange={event => setTelephone(event.target.value)}
                                     />
                                 </div>
 
                                 <div className="modal-label-input">
                                     <label htmlFor="address">Endereço</label>
-                                    <input 
-                                        type="text" 
-                                        placeholder='Endereço' 
+                                    <input
+                                        type="text"
+                                        placeholder='Endereço'
                                         value={address}
                                         onChange={event => setAddress(event.target.value)}
                                     />
@@ -158,9 +187,9 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                 <div className="modal-label-input">
                                     <label htmlFor="written">Escrito no balão</label>
-                                    <input 
-                                        type="text" 
-                                        placeholder='Escrito no Balão' 
+                                    <input
+                                        type="text"
+                                        placeholder='Escrito no Balão'
                                         value={written_balloon}
                                         onChange={event => setWritten_balloon(event.target.value)}
                                     />
@@ -168,11 +197,11 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                 <div className="modal-label-input">
                                     <label htmlFor="symbol-photo">Algum símbolo ou foto</label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         placeholder='Algum símbolo ou foto'
                                         value={balloon_symbol}
-                                        onChange={event => setBalloon_symbol(event.target.value)} 
+                                        onChange={event => setBalloon_symbol(event.target.value)}
                                     />
                                 </div>
                             </div>
@@ -181,7 +210,7 @@ const Modal = ({ close, id = 'modal', day, year }) => {
                                 <div className="modal-line-item">
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-date">Data entrega</label>
-                                        <input 
+                                        <input
                                             type="text"
                                             value={delivery_date}
                                             onChange={event => setDelivery_date(event.target.value)}
@@ -191,9 +220,9 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-time">Hora para entrega</label>
-                                        <input 
-                                            type="text" 
-                                            placeholder='00:00' 
+                                        <input
+                                            type="text"
+                                            placeholder='00:00'
                                             value={delivery_hours}
                                             onChange={event => setDelivery_hours(event.target.value)}
                                         />
@@ -202,10 +231,10 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                 <div className="modal-label-input">
                                     <label htmlFor="observation">Observação</label>
-                                    <textarea 
-                                        name="observation" 
-                                        id="observation" 
-                                        placeholder='Observação' 
+                                    <textarea
+                                        name="observation"
+                                        id="observation"
+                                        placeholder='Observação'
                                         value={observations}
                                         onChange={event => setObservations(event.target.value)}
                                     />
@@ -213,10 +242,10 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                 <div className="modal-label-input">
                                     <label htmlFor="amount">Quantidade</label>
-                                    <input 
-                                        type='number' 
-                                        id="amount" 
-                                        name="amount" 
+                                    <input
+                                        type='number'
+                                        id="amount"
+                                        name="amount"
                                         value={amount}
                                         onChange={event => setAmount(event.target.value)}
                                     />
@@ -225,9 +254,9 @@ const Modal = ({ close, id = 'modal', day, year }) => {
                                 <div className="modal-line-item">
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-date">Valor</label>
-                                        <input 
-                                            type="text" 
-                                            placeholder="R$ 0,00" 
+                                        <input
+                                            type="text"
+                                            placeholder="R$ 0,00"
                                             value={value}
                                             onChange={event => setValue(event.target.value)}
                                         />
@@ -235,8 +264,8 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-time">Entrada</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             placeholder="R$ 0,00"
                                             value={entry_value}
                                             onChange={event => setEntry_value(event.target.value)}
@@ -246,9 +275,9 @@ const Modal = ({ close, id = 'modal', day, year }) => {
 
                                     <div className="modal-label-input modal-item">
                                         <label htmlFor="delivery-time">Falta pagar</label>
-                                        <input 
-                                            type="text" 
-                                            placeholder="R$ 0,00"  
+                                        <input
+                                            type="text"
+                                            placeholder="R$ 0,00"
                                             value={lack}
                                             onClick={() => calcvalue(value, entry_value)}
                                         />

@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { getRepository, Like } from 'typeorm';
+import { getRepository } from 'typeorm';
 
 import Services from '../models/Service';
 
 export default {
     async index(request: Request, response: Response) {
         const { month, year } = request.params;
-        console.log(month, year)
         const servicesRepository = getRepository(Services);
         const services = await servicesRepository.find( {
             where: {month: month, year: year},
@@ -15,7 +14,11 @@ export default {
             }
         } );
 
-        return response.status(200).json(services)
+        if(services) {
+            return response.status(200).json(services);
+        }
+
+        return response.status(404).json('Not found')
     },
 
     async show(request: Request, response: Response) {
@@ -23,19 +26,23 @@ export default {
         const servicesRepository = getRepository(Services);
         const service = await servicesRepository.findOneOrFail(id);
 
-        return response.status(200).json(service);
+        if(service) {
+            return response.status(200).json(service);
+        }
+
+        return response.status(404).json('Not found')
 
     },
 
     async update(request: Request, response: Response) {
         const { id } = request.params;
         const {
-            name, telephone, address, model_checked, status, observations, colors, written_balloon,
+            created, name, telephone, address, model_checked, status, observations, colors, written_balloon,
             balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value
         } = request.body;
 
         const data = {
-            name, telephone, address, model_checked, status, observations, colors, written_balloon,
+            created, name, telephone, address, model_checked, status, observations, colors, written_balloon,
             balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value
         };
 
@@ -53,12 +60,12 @@ export default {
     async create(request: Request, response: Response) {
         const servicesRepository = getRepository(Services);
         const {
-            name, telephone, address, model_checked, status, observations, colors, written_balloon,
+            created, name, telephone, address, model_checked, status, observations, colors, written_balloon,
             balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value, lack_value
         } = request.body;
 
         const data = {
-            name, telephone, address, model_checked, status, observations, colors, written_balloon,
+            created, name, telephone, address, model_checked, status, observations, colors, written_balloon,
             balloon_symbol, amount, delivery_date, delivery_hours, value, entry_value, lack_value
         };
 

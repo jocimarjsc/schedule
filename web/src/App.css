@@ -127,14 +127,15 @@
   padding: 5px;
 }
 
-.content section .week-days .days .tasks .task p {
+.content section .week-days .days .tasks .task .task-close p {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   font-size: 14px;
   color: var(--gray-dark);
-  padding: 2px;
   margin-bottom: 5px;
+  padding: 2px;
+  width: 100%;
 }
 
 .content section .week-days .days .tasks .add-modal {
@@ -213,6 +214,69 @@
 }
 
 .success:hover {
+  filter: brightness(95%);
+}
+
+.success-dark {
+  background-color: var(--success);
+  border-left: 3px solid var(--success);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.success-dark:hover {
+  filter: brightness(95%);
+}
+
+.danger-close {
+  background-color: var(--danger-light);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.danger-close:hover {
+  filter: brightness(95%);
+}
+
+.danger-dark {
+  background-color: var(--danger);
+  border-left: 3px solid var(--danger);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.danger-dark:hover {
+  filter: brightness(95%);
+}
+
+.warning-close {
+  background-color: var(--warning-light);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.warning-close:hover {
+  filter: brightness(95%);
+}
+
+.warning-dark {
+  background-color: var(--warning);
+  border-left: 3px solid var(--warning);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.warning-dark:hover {
+  filter: brightness(95%);
+}
+
+.success-close {
+  background-color: var(--success-light);
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.success-close:hover {
   filter: brightness(95%);
 }
 

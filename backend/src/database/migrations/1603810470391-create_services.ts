@@ -15,6 +15,10 @@ export class createServices1603810470391 implements MigrationInterface {
           generationStrategy: 'increment'
         },
         {
+          name: 'create',
+          type: 'varchar'
+        },
+        {
           name: 'name',
           type: 'varchar',
         },

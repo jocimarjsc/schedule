@@ -85,6 +85,13 @@
   margin-top: 10px;
 }
 
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .created-label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+}
+
 .modal-wrapper .modal-backdrop .modal-box .modal-content form .modal-left {
   width: 100%;
   display: flex;
@@ -115,6 +122,32 @@
 .modal-wrapper .modal-backdrop .modal-box .modal-content form  .modal-label-input .modal-check {
   display: flex;
   width: 100%;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .created {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .created .created-check-radio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .created .created-check-radio label {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-left: 15px;
+  color: var(--gray-dark);
+}
+
+.modal-wrapper .modal-backdrop .modal-box .modal-content form .created .created-check-radio input {
+  width: 15px;
+  margin-left: 5px;
 }
 
 .modal-wrapper .modal-backdrop .modal-box .modal-content form  .modal-label-input .modal-check .modal-check-radio {
